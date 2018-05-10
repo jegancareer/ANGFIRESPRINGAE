@@ -11,7 +11,7 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: CarController
     });
 
-    $routeProvider.when('/roll', {
+    $routeProvider.when('/roll/:id', {
         templateUrl: 'roll/layout',
         controller: RollController
     });
@@ -21,10 +21,10 @@ App.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 
-var config = { //Setup your Firebase API Key here
+var config = {
+	 
 };
 firebase.initializeApp(config);
-
 
 /*var rec = database.ref().child('RollProperty/1').once('value').then(function(snapshot) {
 	 // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';

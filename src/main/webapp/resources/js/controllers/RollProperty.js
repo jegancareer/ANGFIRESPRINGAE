@@ -1,4 +1,4 @@
-App.RollProperty = function($scope, $firebaseObject){
+App.RollProperty = function($scope, $routeParams, $firebaseObject){
 	
 $scope.initialize = function (prgcount, totalChordCount) {
 	//progress bar count and name of progress display
@@ -20,7 +20,14 @@ $scope.initialize = function (prgcount, totalChordCount) {
     $scope.dGroup.transition().selectAll("text").delay($scope.delay*1.5).style("font-size","10px");
 }
 
-var starCountRef = firebase.database().ref('RollProperty/1');
+$scope.run = function () {
+	$scope.fetchData($scope.fireDataJsonObj, $scope.fireTotalFetchCount);	
+	$scope.update(0,$scope.fireInitPrgrCount);
+	document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont;
+}	
+
+
+var starCountRef = firebase.database().ref('RollProperty/'+$routeParams.id);
 starCountRef.on('value', function(snapshot) {
 updateRollProperty(snapshot);
 });
@@ -53,20 +60,15 @@ $scope.fireTotalPplCount=5;
 $scope.fireInitPrgrCount=$scope.fireTotalPplCount-2;
 //$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2015.csv";
 $scope.fireDataJsonObj=[
-	{"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ W","id":"1"},
-	{"year":"2001","CTY_CODE":"city2","CTYNAME":"ELMNZ A","id":"1"},
-	{"year":"2001","CTY_CODE":"city3","CTYNAME":"ELMNZ R","id":"1"},
-	{"year":"2001","CTY_CODE":"city4","CTYNAME":"ELMNZ E","id":"1"},
-	{"year":"2001","CTY_CODE":"city5","CTYNAME":"ELMNZ K","id":"1"},
+	{"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ E","id":"1"},
+	{"year":"2001","CTY_CODE":"city2","CTYNAME":"ELMNZ L","id":"1"},
+	{"year":"2001","CTY_CODE":"city3","CTYNAME":"ELMNZ M","id":"1"},
+	{"year":"2001","CTY_CODE":"city4","CTYNAME":"ELMNZ N","id":"1"},
+	{"year":"2001","CTY_CODE":"city5","CTYNAME":"ELMNZ Z","id":"1"},
 	{"year":"2001","CTY_CODE":"city6","CTYNAME":"ELMNZ I","id":"1"}];
 
 $scope.fireHtmlcont=Object.keys($scope.fireDataJsonObj).length;//+" Joined.";
 $scope.initialize($scope.firePrgrCount, $scope.fireTotalPplCount);
 
-$scope.run = function () {
-	$scope.fetchData($scope.fireDataJsonObj, $scope.fireTotalFetchCount);	
-	$scope.update(0,$scope.fireInitPrgrCount);
-	document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont;
-}	
 $scope.run();
 }
