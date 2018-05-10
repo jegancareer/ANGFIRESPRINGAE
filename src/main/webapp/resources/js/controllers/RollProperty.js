@@ -33,22 +33,18 @@ function updateRollProperty(snapshot) {
 	$scope.fireTotalPplCount=10; 
 	////$scope.fireInitPrgrCount=0;
 	//$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2014.csv";
-	$scope.fireDataJsonObj=[
-		{"year":"2001","CTY_CODE":"city1","CTYNAME":"new Cityname1","id":"1"},
-		{"year":"2001","CTY_CODE":"city2","CTYNAME":"Cityname2","id":"1"},
-		{"year":"2001","CTY_CODE":"city3","CTYNAME":"Cityname3","id":"1"},
-		{"year":"2001","CTY_CODE":"city4","CTYNAME":"Cityname4","id":"1"},
-		{"year":"2001","CTY_CODE":"city5","CTYNAME":"Cityname5","id":"1"},
-		{"year":"2001","CTY_CODE":"city6","CTYNAME":"Cityname6","id":"1"},
-		{"year":"2001","CTY_CODE":"city7","CTYNAME":"Cityname7","id":"1"},
-		{"year":"2001","CTY_CODE":"city8","CTYNAME":"Cityname8","id":"1"},
-		{"year":"2001","CTY_CODE":"city9","CTYNAME":"Cityname9","id":"1"},
-		{"year":"2001","CTY_CODE":"city00","CTYNAME":"Cityname0","id":"1"},
-		{"year":"2001","CTY_CODE":"22city5","CTYNAME":"Cityname11","id":"1"},
-		{"year":"2001","CTY_CODE":"333city6","CTYNAME":"Cityname622","id":"1"}];
-	$scope.fireHtmlcont="0 Joined.";	
+	joinerArray = snapshot.child("joiners").val();
+	$scope.fireDataJsonObj=[]
+	Object.keys(joinerArray).forEach(function(key) {
+	    value = joinerArray[key];
+	    console.log(value + "-" + key);
+	    rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":""+value,"id":"1"};
+	    $scope.fireDataJsonObj.push(rolmen);
+	});
+	$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
 	$scope.run();	
 }
+
 //Default
 $scope.fireName ='anonymous';
 $scope.firePrgrCount= 100; //looping progress bar
@@ -57,37 +53,20 @@ $scope.fireTotalPplCount=5;
 $scope.fireInitPrgrCount=$scope.fireTotalPplCount-2;
 //$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2015.csv";
 $scope.fireDataJsonObj=[
-	{"year":"2001","CTY_CODE":"city1","CTYNAME":"Cityname1","id":"1"},
-	{"year":"2001","CTY_CODE":"city2","CTYNAME":"Cityname2","id":"1"},
-	{"year":"2001","CTY_CODE":"city3","CTYNAME":"Cityname3","id":"1"},
-	{"year":"2001","CTY_CODE":"city4","CTYNAME":"Cityname4","id":"1"},
-	{"year":"2001","CTY_CODE":"city5","CTYNAME":"Cityname5","id":"1"},
-	{"year":"2001","CTY_CODE":"city6","CTYNAME":"Cityname6","id":"1"},
-	{"year":"2001","CTY_CODE":"city7","CTYNAME":"Cityname7","id":"1"},
-	{"year":"2001","CTY_CODE":"city8","CTYNAME":"Cityname8","id":"1"},
-	{"year":"2001","CTY_CODE":"city9","CTYNAME":"Cityname9","id":"1"},
-	{"year":"2001","CTY_CODE":"city00","CTYNAME":"Cityname0","id":"1"}];
+	{"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ W","id":"1"},
+	{"year":"2001","CTY_CODE":"city2","CTYNAME":"ELMNZ A","id":"1"},
+	{"year":"2001","CTY_CODE":"city3","CTYNAME":"ELMNZ R","id":"1"},
+	{"year":"2001","CTY_CODE":"city4","CTYNAME":"ELMNZ E","id":"1"},
+	{"year":"2001","CTY_CODE":"city5","CTYNAME":"ELMNZ K","id":"1"},
+	{"year":"2001","CTY_CODE":"city6","CTYNAME":"ELMNZ I","id":"1"}];
 
 $scope.fireHtmlcont=Object.keys($scope.fireDataJsonObj).length;//+" Joined.";
-
 $scope.initialize($scope.firePrgrCount, $scope.fireTotalPplCount);
-$scope.fetchData($scope.fireDataJsonObj, $scope.fireTotalFetchCount);
-//document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont;
-
 
 $scope.run = function () {
-	/* if($scope.fireInitPrgrCount++ < $scope.fireTotalPplCount) {
-		 $scope.update(0,$scope.fireInitPrgrCount);
-		 document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont;
-	 } else {
-		 $scope.fireInitPrgrCount=0;
-		 document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont;
-		 $scope.fetchData($scope.fireDataJsonObj, $scope.fireTotalFetchCount);
-	 }*/
+	$scope.fetchData($scope.fireDataJsonObj, $scope.fireTotalFetchCount);	
 	$scope.update(0,$scope.fireInitPrgrCount);
-	$scope.fetchData($scope.fireDataJsonObj, $scope.fireTotalFetchCount);
-	
-	 document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont;
+	document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont;
 }	
 $scope.run();
 }
