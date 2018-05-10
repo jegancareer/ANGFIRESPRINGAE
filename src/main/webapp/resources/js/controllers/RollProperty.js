@@ -53,22 +53,23 @@ function updateRollProperty(snapshot) {
 }
 
 //Default
-$scope.fireName ='anonymous';
-$scope.firePrgrCount= 100; //looping progress bar
-$scope.fireTotalFetchCount=5;// //
-$scope.fireTotalPplCount=5; 
-$scope.fireInitPrgrCount=$scope.fireTotalPplCount-2;
-//$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2015.csv";
-$scope.fireDataJsonObj=[
-	{"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ E","id":"1"},
-	{"year":"2001","CTY_CODE":"city2","CTYNAME":"ELMNZ L","id":"1"},
-	{"year":"2001","CTY_CODE":"city3","CTYNAME":"ELMNZ M","id":"1"},
-	{"year":"2001","CTY_CODE":"city4","CTYNAME":"ELMNZ N","id":"1"},
-	{"year":"2001","CTY_CODE":"city5","CTYNAME":"ELMNZ Z","id":"1"},
-	{"year":"2001","CTY_CODE":"city6","CTYNAME":"ELMNZ I","id":"1"}];
+if ($scope.fireDataJsonObj == undefined) {
+	$scope.fireName ='anonymous';
+	$scope.firePrgrCount= 100; //looping progress bar
+	$scope.fireTotalFetchCount=5;// //
+	$scope.fireTotalPplCount=5; 
+	$scope.fireInitPrgrCount=$scope.fireTotalPplCount-2;
+	//$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2015.csv";
+	$scope.fireDataJsonObj=[
+		{"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ E","id":"1"},
+		{"year":"2001","CTY_CODE":"city2","CTYNAME":"ELMNZ L","id":"1"},
+		{"year":"2001","CTY_CODE":"city3","CTYNAME":"ELMNZ M","id":"1"},
+		{"year":"2001","CTY_CODE":"city4","CTYNAME":"ELMNZ N","id":"1"},
+		{"year":"2001","CTY_CODE":"city5","CTYNAME":"ELMNZ Z","id":"1"},
+		{"year":"2001","CTY_CODE":"city6","CTYNAME":"ELMNZ I","id":"1"}];
+}
+	$scope.fireHtmlcont=Object.keys($scope.fireDataJsonObj).length;//+" Joined.";
+	$scope.initialize($scope.firePrgrCount, $scope.fireTotalPplCount);
 
-$scope.fireHtmlcont=Object.keys($scope.fireDataJsonObj).length;//+" Joined.";
-$scope.initialize($scope.firePrgrCount, $scope.fireTotalPplCount);
-
-$scope.run();
+	$scope.run();
 }
