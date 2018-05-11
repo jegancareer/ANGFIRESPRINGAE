@@ -14,29 +14,51 @@
 	  }
 	  .carousel-indicators{display:none;}
 	  #myCarousel {width:240px;}
-	</style>	
+	</style>
+	<script src="resources/js/jquery-3.3.1.min.js"></script>
+	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/js/lib/angular/angular.js"></script>
+ 	<script src="https://www.gstatic.com/firebasejs/5.0.1/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+	<script src="resources/js/app.js"></script>	
+	<script src="https://cdn.firebase.com/libs/firebaseui/3.0.0/firebaseui.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.0.0/firebaseui.css" />	
+	<script type="text/javascript">
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: '#/roll/1',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+          firebase.auth.GithubAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          firebase.auth.PhoneAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url.
+        tosUrl: '/tos'
+      };
+
+     
+    </script>
 </head>
 <body>
-
   
 <div id="wrapper">
     <ul class="menu">
         <li><a href="#/cars">Cars</a></li>
         <li><a href="#/roll/1">Roll 1</a></li>
         <li><a href="#/roll/2">Roll 2</a></li>
+        <li><a href="#/auth">Login</a></li>
     </ul>
     <hr class="" />
     <div ng-view=""></div>
 </div>
 
-<script src="resources/js/jquery-3.3.1.min.js"></script>
-<script src="resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="resources/js/lib/angular/angular.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.0.1/firebase.js"></script>
-<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
 
-<script src="resources/js/app.js"></script>
 <script src="resources/js/services.js"></script>
+<script src="resources/js/controllers/AuthController.js"></script>
 <script src="resources/js/controllers/CarController.js"></script>
 
 <script src="resources/js/controllers/Rollglobals.js"></script>
