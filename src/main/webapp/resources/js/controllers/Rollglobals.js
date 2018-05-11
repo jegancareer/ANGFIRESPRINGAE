@@ -1,6 +1,6 @@
 App.RollGlobals = function($scope)
 {
-$scope.maxWidth=Math.max(600,Math.min(window.innerWidth,window.innerHeight)-50);
+$scope.maxWidth=Math.max(500,Math.min(window.innerWidth,window.innerHeight)-100);
 
 $scope.outerRadius = ($scope.maxWidth / 2),
 $scope.innerRadius = $scope.outerRadius - 100,
@@ -55,7 +55,7 @@ $scope.i_fill= d3.scale.ordinal().range(["#EF002A","#B32D45","#9B001C","#F73E5F"
 
 $scope.monthsMap=["Pisces","Aries","Taurus","Sagittarius","Gemini","Scorpio", "Leo", "Virgo", "Cancer", "Libra", "Capricorn", "Aquarius"];
 d3.select(document.getElementById("bpg"))
-    .style("min-width",($scope.outerRadius*2 + 150) + "px");
+    .style("min-width",($scope.outerRadius*2 + 0) + "px");
 
 
 $scope.playPause=d3.select(document.getElementById("playPause"));
@@ -91,7 +91,8 @@ $scope.arc = d3.svg.arc()
 
 $scope.dGroup = $scope.svg.append("g")
     .attr("class","mainLabel")
-    .attr("transform", "translate(" + (($scope.outerRadius + $scope.innerRadius *.7/2)-($scope.outerRadius-($scope.innerRadius *.8/2))-180) + ","  + 0 +")")
+    .attr("transform", "translate(" +  0+ ","  + 20 +")")
+    //.attr("transform", "translate(" + (($scope.outerRadius + $scope.innerRadius *.7/2)-($scope.outerRadius-($scope.innerRadius *.8/2))-180) + ","  + 0 +")")
 
 $scope.dGroup.append("text")
     .attr("class","mainLabel")

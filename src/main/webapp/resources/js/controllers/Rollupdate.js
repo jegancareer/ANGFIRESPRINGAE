@@ -35,7 +35,7 @@ App.RollUpdate = function($scope){
 	        .transition()
 	        .delay($scope.delay)
 	        .text(td)
-	        .attr("transform", "translate(" + ($scope.outerRadius - (td.length * fs/2)/2) + ","  + ($scope.outerRadius*1.1) +")")
+	        .attr("transform", "translate(" + ($scope.outerRadius - (td.length * fs/2)/2) + ","  + ($scope.outerRadius*1.12) +")")
 	        .style("font-size", fs + "px");
 	
 	    $scope.eText.enter()
