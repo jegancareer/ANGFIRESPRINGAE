@@ -44,15 +44,15 @@ function updateRollProperty(snapshot) {
 	$scope.fireDataJsonObj=[]
 	value='';
 	
-	//Initial case scenario!!
+	//Initial case/static scenario!!
 	if(joinerArray==null || joinerArray.length<2) {
 		if(joinerArray==null || joinerArray.length==1) {
-			rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ V","id":"1"};
+			rolmen = {"year":"2001","CTY_CODE":"no","CTYNAME":"ELMNZ V","id":"1"};
 			$scope.fireDataJsonObj.push(rolmen);
 		 } else {
-			rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ V","id":"1"};
+			rolmen = {"year":"2001","CTY_CODE":"no","CTYNAME":"ELMNZ V","id":"1"};
 			$scope.fireDataJsonObj.push(rolmen);
-			rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ U","id":"1"};
+			rolmen = {"year":"2001","CTY_CODE":"no","CTYNAME":"ELMNZ U","id":"1"};
 			$scope.fireDataJsonObj.push(rolmen);
 		 }
 		$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
@@ -62,10 +62,15 @@ function updateRollProperty(snapshot) {
 		Object.keys(joinerArray).forEach(function(key) {
 			firebase.database().ref("RollJoiners/"+joinerArray[key].userId).child("_details/")
 				.once("value", function(userSnap) { 
-						console.log(userSnap.val());
+						//console.log(userSnap.val());
 						value=userSnap.val().email;
-						// value = joinerArray[key];
-					    rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":""+value,"id":"1"};
+						// value = key;//joinerArray[key];
+						if(null !=firebase.auth().currentUser && null !=firebase.auth().currentUser.uid &&
+								key==firebase.auth().currentUser.uid) {
+							rolmen = {"year":"2001","CTY_CODE":"yes","CTYNAME":""+"You \u{2665}","id":"1"};
+						} else {
+							rolmen = {"year":"2001","CTY_CODE":"no","CTYNAME":value.slice(0,10)+"..","id":"1"};
+						}
 					    $scope.fireDataJsonObj.push(rolmen);
 					    $scope.fireHtmlcont=snapshot.child("totalJoined").val();	
 						$scope.run();	
@@ -85,8 +90,8 @@ if ($scope.fireDataJsonObj == undefined) {
 	$scope.fireInitPrgrCount=$scope.fireTotalPplCount-2;
 	//$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2015.csv";
 	$scope.fireDataJsonObj=[
-		{"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ I","id":"1"},
-		{"year":"2001","CTY_CODE":"city6","CTYNAME":"ELMNZ I","id":"1"}];
+		{"year":"2001","CTY_CODE":"no","CTYNAME":"ELMNZ I","id":"1"},
+		{"year":"2001","CTY_CODE":"no","CTYNAME":"ELMNZ V","id":"1"}];
 }
 	$scope.fireHtmlcont=Object.keys($scope.fireDataJsonObj).length;//+" Joined.";
 	$scope.initialize($scope.firePrgrCount, $scope.fireTotalPplCount);

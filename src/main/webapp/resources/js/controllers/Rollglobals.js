@@ -50,8 +50,8 @@ var header = d3.select(document.getElementById("head"));
 var header1 = d3.select(document.getElementById("header1"));
 var header2 = d3.select(document.getElementById("header2"));
 
-$scope.e_fill= d3.scale.ordinal().range(["#00AC6B","#20815D","#007046","#35D699","#60D6A9"]);
-$scope.i_fill= d3.scale.ordinal().range(["#EF002A","#B32D45","#9B001C","#F73E5F","#F76F87"]);
+$scope.e_fill= d3.scale.ordinal().range(["#ed5e5e","#B32D45","#9B001C","#F73E5F","#F76F87"]);
+$scope.i_fill= d3.scale.ordinal().range(["#00AC6B","#20815D","#007046","#35D699","#60D6A9"]);
 
 $scope.monthsMap=["Pisces","Aries","Taurus","Sagittarius","Gemini","Scorpio", "Leo", "Virgo", "Cancer", "Libra", "Capricorn", "Aquarius"];
 d3.select(document.getElementById("bpg"))
