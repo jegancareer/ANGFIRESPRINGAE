@@ -1,11 +1,12 @@
 var RollController = function($scope, $http, $routeParams, $firebaseObject) {
 	//alert($routeParams.id);
-    $scope.fetchRoll = function() {
+    $scope.fetchRoll = function(id) {
+    	 $scope.roll=id;
         $http.get('roll/roll.json').success(function(rolling){
-            $scope.roll = rolling;
+            //$scope.roll = rolling;
         });
     };
-    $scope.fetchRoll();
+    $scope.fetchRoll($routeParams.id);
     App.RollGlobals($scope);
     App.RollGradiants($scope);
     App.RollData($scope);
