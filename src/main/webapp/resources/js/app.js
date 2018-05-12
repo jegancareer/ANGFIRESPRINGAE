@@ -26,7 +26,7 @@ App.config(['$routeProvider', function ($routeProvider) {
 
 
 var config = {
-	  
+	   
 };
 firebase.initializeApp(config);
 
@@ -47,9 +47,13 @@ firebase.auth().onAuthStateChanged(function(user) {
     var isAnonymous = user.isAnonymous;
     var uid = user.uid;
     var providerData = user.providerData;
-    // ...
+    firebase.database().ref("RollJoiners/" + user.uid + "/_details").update({
+		name: user.displayName,
+		email: user.email,
+		photo: user.photoURL
+	});
   } else {
-    // User is signed out.
+    // User is signed out.so?
     // ...
   }
 });

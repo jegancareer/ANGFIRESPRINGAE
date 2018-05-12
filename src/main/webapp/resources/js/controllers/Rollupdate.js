@@ -48,7 +48,8 @@ App.RollUpdate = function($scope){
 	                + "translate(" + ($scope.innerRadius + 6) + ")"
 	                + (d.angle > Math.PI ? "rotate(180)" : "");
 	        })
-	        .text(function(d) { return  (d.index+1)  + ". " + d.label; })
+	        .text(function(d) { return d.label; })
+	        //.text(function(d) { return  (d.index+1)  + ". " + d.label; })
 	        //.on("mouseover", function (d) { node_onMouseOver(d); })
 	        //.on("mouseout", function (d) {node_onMouseOut(d); })
 	        .attr("fill-opacity", 1e-6)
@@ -64,7 +65,8 @@ App.RollUpdate = function($scope){
 	                + "translate(" + ($scope.innerRadius + 6) + ")"
 	                + (d.angle > Math.PI ? "rotate(180)" : "");
 	        })
-	        .text(function(d) { return  (d.index+1)  + ". " + d.label; })
+	        //.text(function(d) { return  (d.index+1)  + ". " + d.label; })
+	        .text(function(d) { return d.label; })
 	        .attr("fill-opacity", 1.0);
 	
 	    $scope.eText.exit()
@@ -132,7 +134,8 @@ App.RollUpdate = function($scope){
 	                + "translate(" + ($scope.innerRadius + 6) + ")"
 	                + (d.angle > Math.PI ? "rotate(180)" : "");
 	        })
-	        .text(function(d) { return  (d.index+1)  + ". " + d.label; })
+	        .text(function(d) { return d.label; })
+	        //.text(function(d) { return  (d.index+1)  + ". " + d.label; })
 	        .attr("fill-opacity", 1.0);
 	
 	    $scope.iText.exit()

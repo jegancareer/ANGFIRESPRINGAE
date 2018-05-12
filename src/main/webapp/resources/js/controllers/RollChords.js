@@ -43,7 +43,7 @@ App.RollChords = function($scope){
     });
 
     // Compute a unique index for each country name.
-    n=0;
+    n=0;//to reset id 
     totalImports=0;
     $scope.import_countries.forEach(function(d) {
         totalImports+= Number(d.Imports);

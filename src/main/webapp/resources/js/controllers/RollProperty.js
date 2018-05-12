@@ -42,14 +42,20 @@ function updateRollProperty(snapshot) {
 	//$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2014.csv";
 	joinerArray = snapshot.child("joiners").val();
 	$scope.fireDataJsonObj=[]
+	value='';
 	Object.keys(joinerArray).forEach(function(key) {
-	    value = joinerArray[key];
-	    console.log(value + "-" + key);
-	    rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":""+value,"id":"1"};
-	    $scope.fireDataJsonObj.push(rolmen);
+		firebase.database().ref("RollJoiners/"+joinerArray[key].userId).child("_details/")
+			.once("value", function(userSnap) { 
+					console.log(userSnap.val());
+					value=userSnap.val().email;
+					// value = joinerArray[key];
+				    rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":""+value,"id":"1"};
+				    $scope.fireDataJsonObj.push(rolmen);
+				    $scope.fireHtmlcont=snapshot.child("totalJoined").val();	
+					$scope.run();	
+				});
 	});
-	$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
-	$scope.run();	
+	
 }
 
 //Default
@@ -63,9 +69,9 @@ if ($scope.fireDataJsonObj == undefined) {
 	$scope.fireDataJsonObj=[
 		{"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ E","id":"1"},
 		{"year":"2001","CTY_CODE":"city2","CTYNAME":"ELMNZ L","id":"1"},
-		{"year":"2001","CTY_CODE":"city3","CTYNAME":"ELMNZ M","id":"1"},
-		{"year":"2001","CTY_CODE":"city4","CTYNAME":"ELMNZ N","id":"1"},
-		{"year":"2001","CTY_CODE":"city5","CTYNAME":"ELMNZ Z","id":"1"},
+		//{"year":"2001","CTY_CODE":"city3","CTYNAME":"ELMNZ M","id":"1"},
+		//{"year":"2001","CTY_CODE":"city4","CTYNAME":"ELMNZ N","id":"1"},
+		//{"year":"2001","CTY_CODE":"city5","CTYNAME":"ELMNZ Z","id":"1"},
 		{"year":"2001","CTY_CODE":"city6","CTYNAME":"ELMNZ I","id":"1"}];
 }
 	$scope.fireHtmlcont=Object.keys($scope.fireDataJsonObj).length;//+" Joined.";
@@ -73,3 +79,19 @@ if ($scope.fireDataJsonObj == undefined) {
 
 	$scope.run();
 }
+
+
+
+
+
+/* 
+
+RollProperty/{id}/joiners/{id2} <=> RollJoiners/{id2} => RollJoiners/{id2}
+
+var fb = firebase.database().ref("RollProperty/1"); 
+fb.child("joiners").once("value", function(userSnap) {
+   firebase.database().ref("RollJoiners").once("value", function(mediaSnap) {
+        console.log(userSnap.val(), mediaSnap.val());
+   });
+});
+*/
