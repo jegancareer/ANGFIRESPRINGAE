@@ -43,20 +43,38 @@ function updateRollProperty(snapshot) {
 	joinerArray = snapshot.child("joiners").val();
 	$scope.fireDataJsonObj=[]
 	value='';
-	Object.keys(joinerArray).forEach(function(key) {
-		firebase.database().ref("RollJoiners/"+joinerArray[key].userId).child("_details/")
-			.once("value", function(userSnap) { 
-					console.log(userSnap.val());
-					value=userSnap.val().email;
-					// value = joinerArray[key];
-				    rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":""+value,"id":"1"};
-				    $scope.fireDataJsonObj.push(rolmen);
-				    $scope.fireHtmlcont=snapshot.child("totalJoined").val();	
-					$scope.run();	
-				});
-	});
 	
+	//Initial case scenario!!
+	if(joinerArray==null || joinerArray.length<2) {
+		if(joinerArray==null || joinerArray.length==1) {
+			rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ V","id":"1"};
+			$scope.fireDataJsonObj.push(rolmen);
+		 } else {
+			rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ V","id":"1"};
+			$scope.fireDataJsonObj.push(rolmen);
+			rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ U","id":"1"};
+			$scope.fireDataJsonObj.push(rolmen);
+		 }
+		$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
+		$scope.run();
+	} else {
+		//TODO:No where in Firestore for now so keeping this iteration and calling run method each time!
+		Object.keys(joinerArray).forEach(function(key) {
+			firebase.database().ref("RollJoiners/"+joinerArray[key].userId).child("_details/")
+				.once("value", function(userSnap) { 
+						console.log(userSnap.val());
+						value=userSnap.val().email;
+						// value = joinerArray[key];
+					    rolmen = {"year":"2001","CTY_CODE":"city1","CTYNAME":""+value,"id":"1"};
+					    $scope.fireDataJsonObj.push(rolmen);
+					    $scope.fireHtmlcont=snapshot.child("totalJoined").val();	
+						$scope.run();	
+					});
+		});
+	}
 }
+
+
 
 //Default
 if ($scope.fireDataJsonObj == undefined) {
@@ -67,11 +85,7 @@ if ($scope.fireDataJsonObj == undefined) {
 	$scope.fireInitPrgrCount=$scope.fireTotalPplCount-2;
 	//$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2015.csv";
 	$scope.fireDataJsonObj=[
-		{"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ E","id":"1"},
-		{"year":"2001","CTY_CODE":"city2","CTYNAME":"ELMNZ L","id":"1"},
-		//{"year":"2001","CTY_CODE":"city3","CTYNAME":"ELMNZ M","id":"1"},
-		//{"year":"2001","CTY_CODE":"city4","CTYNAME":"ELMNZ N","id":"1"},
-		//{"year":"2001","CTY_CODE":"city5","CTYNAME":"ELMNZ Z","id":"1"},
+		{"year":"2001","CTY_CODE":"city1","CTYNAME":"ELMNZ I","id":"1"},
 		{"year":"2001","CTY_CODE":"city6","CTYNAME":"ELMNZ I","id":"1"}];
 }
 	$scope.fireHtmlcont=Object.keys($scope.fireDataJsonObj).length;//+" Joined.";
