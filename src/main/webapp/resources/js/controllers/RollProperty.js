@@ -33,7 +33,9 @@ updateRollProperty(snapshot);
 
 function updateRollProperty(snapshot) {	
 	//alert(' - '+ JSON.stringify(snapshot.val()));
-	$scope.fireRollName =snapshot.child("name").val();
+	//update DOM/model/VIEW via FIREBASE event
+	$scope.$apply(function() {$scope.fireRollName =snapshot.child("name").val();});
+	
 	$scope.fireSponsorName = snapshot.child("sponsor").val();
 	$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
 	$scope.monthlyImports.unshift(77777777);
@@ -91,7 +93,7 @@ function updateRollProperty(snapshot) {
 //Default
 if ($scope.fireDataJsonObj == undefined) {
 	$scope.monthlyImports.unshift(0);
-	$scope.fireRollName ='anonymous';
+	//$scope.fireRollName ='anonymous';
 	$scope.firePrgrCount= 100; //looping progress bar
 	$scope.fireTotalFetchCount=5;// //
 	$scope.fireTotalPplCount=5; 
