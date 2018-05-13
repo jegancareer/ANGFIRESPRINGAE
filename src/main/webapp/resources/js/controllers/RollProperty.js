@@ -35,6 +35,8 @@ function updateRollProperty(snapshot) {
 	//alert(' - '+ JSON.stringify(snapshot.val()));
 	$scope.fireRollName =snapshot.child("name").val();
 	$scope.fireSponsorName = snapshot.child("sponsor").val();
+	$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
+	$scope.monthlyImports.unshift(77777777);
 	$scope.firePrgrCount= 100;
 	$scope.fireTotalFetchCount=10; 
 	$scope.fireTotalPplCount=10; 
@@ -56,7 +58,7 @@ function updateRollProperty(snapshot) {
 			rolmen = {"year":"2001","CTY_CODE":"no","CTYNAME":"ELMNZ U","id":"1"};
 			$scope.fireDataJsonObj.push(rolmen);
 		 }
-		$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
+		
 		$scope.run();
 	} else {
 		//TODO:No where in Firestore for now so keeping this iteration and calling run method each time!
@@ -73,7 +75,7 @@ function updateRollProperty(snapshot) {
 							rolmen = {"year":"2001","CTY_CODE":"no","CTYNAME":value.slice(0,10)+"..","id":"1"};
 						}
 					    $scope.fireDataJsonObj.push(rolmen);
-					    $scope.fireHtmlcont=snapshot.child("totalJoined").val();	
+					    //$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
 						$scope.run();	
 					});
 		});
@@ -88,6 +90,7 @@ function updateRollProperty(snapshot) {
 
 //Default
 if ($scope.fireDataJsonObj == undefined) {
+	$scope.monthlyImports.unshift(0);
 	$scope.fireRollName ='anonymous';
 	$scope.firePrgrCount= 100; //looping progress bar
 	$scope.fireTotalFetchCount=5;// //
@@ -98,7 +101,7 @@ if ($scope.fireDataJsonObj == undefined) {
 		{"year":"2001","CTY_CODE":"no","CTYNAME":"ELMNZ I","id":"1"},
 		{"year":"2001","CTY_CODE":"no","CTYNAME":"ELMNZ V","id":"1"}];
 }
-	$scope.fireHtmlcont=Object.keys($scope.fireDataJsonObj).length;//+" Joined.";
+	//$scope.fireHtmlcont=Object.keys($scope.fireDataJsonObj).length;//+" Joined.";
 	$scope.initialize($scope.firePrgrCount, $scope.fireTotalPplCount);
 
 	$scope.run();
