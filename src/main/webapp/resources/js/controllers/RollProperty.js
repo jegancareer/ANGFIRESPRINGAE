@@ -34,8 +34,11 @@ updateRollProperty(snapshot);
 function updateRollProperty(snapshot) {	
 	//alert(' - '+ JSON.stringify(snapshot.val()));
 	//update DOM/model/VIEW via FIREBASE event
-	$scope.$apply(function() {$scope.fireRollName =snapshot.child("name").val();});
-	
+	if(!$scope.$$phase) {
+		$scope.$apply(function() {$scope.fireRollName =snapshot.child("name").val();});
+	} else {
+		$scope.fireRollName =snapshot.child("name").val();
+	}
 	$scope.fireSponsorName = snapshot.child("sponsor").val();
 	$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
 	$scope.monthlyImports.unshift(77777777);
