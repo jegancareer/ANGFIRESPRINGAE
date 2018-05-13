@@ -23,7 +23,6 @@ $scope.initialize = function (prgcount, totalChordCount) {
 $scope.run = function () {
 	$scope.fetchData($scope.fireDataJsonObj, $scope.fireTotalFetchCount);	
 	$scope.update(0,$scope.fireInitPrgrCount);
-	document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont;
 }	
 
 
@@ -34,7 +33,8 @@ updateRollProperty(snapshot);
 
 function updateRollProperty(snapshot) {	
 	//alert(' - '+ JSON.stringify(snapshot.val()));
-	$scope.fireName ='anonymous';
+	$scope.fireRollName =snapshot.child("name").val();
+	$scope.fireSponsorName = snapshot.child("sponsor").val();
 	$scope.firePrgrCount= 100;
 	$scope.fireTotalFetchCount=10; 
 	$scope.fireTotalPplCount=10; 
@@ -43,6 +43,7 @@ function updateRollProperty(snapshot) {
 	joinerArray = snapshot.child("joiners").val();
 	$scope.fireDataJsonObj=[]
 	value='';
+	
 	
 	//Initial case/static scenario!!
 	if(joinerArray==null || joinerArray.length<2) {
@@ -77,13 +78,17 @@ function updateRollProperty(snapshot) {
 					});
 		});
 	}
+	
+	document.getElementsByClassName("thirdLabel")[0].innerHTML="*By " + $scope.fireSponsorName;
+	document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont +" Joined.";
+	$scope.monthlyImports.unshift(77777777);
 }
 
 
 
 //Default
 if ($scope.fireDataJsonObj == undefined) {
-	$scope.fireName ='anonymous';
+	$scope.fireRollName ='anonymous';
 	$scope.firePrgrCount= 100; //looping progress bar
 	$scope.fireTotalFetchCount=5;// //
 	$scope.fireTotalPplCount=5; 

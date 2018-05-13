@@ -44,6 +44,9 @@ $scope.eTextUpdate,
 $scope.eChordUpdate,
 $scope.TextUpdate,
 $scope.iChordUpdate;
+$scope.fireRollName ='';
+$scope.fireSponsorName = '';
+
 
 var toolTip = d3.select(document.getElementById("toolTip"));
 var header = d3.select(document.getElementById("head"));
@@ -108,7 +111,7 @@ $scope.dGroup.append("text")
 $scope.dGroup.append("text")
 .attr("class","thirdLabel")
 .attr("transform", "translate(" + ($scope.outerRadius - 60) + ","  + ($scope.outerRadius * 1.05) +")")
-.text("*By Accenture corporation")
+.text("*By "+$scope.fireSponsorName)
 .style("font-size","0px");
 
 $scope.gY=($scope.outerRadius-($scope.innerRadius *.8/2));
