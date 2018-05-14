@@ -16,6 +16,7 @@ App.RollData = function($scope)
                 newRow.Country=row.CTYNAME;
                 newRow.Month=(y < 10) ? "0" + String(y) : String(y);
                 newRow.Imports=Number(row.id);
+                newRow.Colorme=row.CTY_CODE;
                 normalized.push(newRow);
         }
 
@@ -23,7 +24,7 @@ App.RollData = function($scope)
         $scope.countriesGrouped = normalized;
         //Sum total deficit for each month
         var totalImport=0;
-        $scope.monthlyImports.push(1000);
+        //$scope.monthlyImports.push(1000);
         /*for (var y=0; y < $scope.countriesGrouped.length; y++) {
             var yearGroup=$scope.countriesGrouped[y];
             for (var m=0; m < yearGroup.values.length; m++) {

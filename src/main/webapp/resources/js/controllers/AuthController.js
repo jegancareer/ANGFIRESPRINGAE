@@ -4,8 +4,9 @@
  * AuthController
  * @constructor
  */
-var AuthController = function($scope, $http) {
+var AuthController = function($scope, $http, $rootScope) {
     $scope.fetchLogin = function() {
+    	//alert($rootScope.oldURL)
     	$scope.userURL='userURL';
     	if(firebase.auth().currentUser != undefined && firebase.auth().currentUser != null) {
     		$scope.userURL=firebase.auth().currentUser.photoURL;

@@ -19,4 +19,5 @@ var RollController = function($scope, $http, $routeParams, $firebaseObject) {
 		 userId:firebase.auth().currentUser.uid
 	 });
     };
+    
 };
