@@ -25,7 +25,6 @@ $scope.run = function () {
 	$scope.update(0,$scope.fireInitPrgrCount);
 }	
 
-
 var starCountRef = firebase.database().ref('RollProperty/'+$routeParams.id);
 	starCountRef.on('value', function(snapshot) {
 	updateRollProperty(snapshot);
@@ -40,7 +39,6 @@ function updateJoinerProperty(joinshot) {
 	joinerArray = joinshot.val();
 	$scope.fireDataJsonObj=[]
 	value='';
-	
 	
 	//Initial case/static scenario!!
 	if(joinerArray==null || joinerArray.length<2) {
@@ -66,6 +64,12 @@ function updateJoinerProperty(joinshot) {
 						if(null !=firebase.auth().currentUser && null !=firebase.auth().currentUser.uid &&
 								key.userId==firebase.auth().currentUser.uid) {
 							rolmen = {"year":"2001","CTY_CODE":"yes","CTYNAME":""+"You \u{2665}","id":"1"};
+							
+							if(!$scope.$$phase) {
+								$scope.$apply(function() {$scope.disableOptIn=true;});
+							} else {
+								$scope.disableOptIn=true;
+							} 
 						} else {
 							rolmen = {"year":"2001","CTY_CODE":"no","CTYNAME":value.slice(0,10)+"..","id":"1"};
 						}

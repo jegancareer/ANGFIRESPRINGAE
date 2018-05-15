@@ -18,6 +18,7 @@ var RollController = function($scope, $http, $routeParams, $firebaseObject) {
     	firebase.database().ref("RollPropertyJoiners/"+id+"/").push({
 			  userId:firebase.auth().currentUser.uid
     	});
+    	$scope.disableOptIn=true;
     };
     
 };
