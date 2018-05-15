@@ -16,20 +16,20 @@ var RollCreateController = function($scope, $http, $location, $rootScope, $route
 	    };
 	$scope.fetchRoll();
 
-    $scope.createRoll = function(id) {
-    	 //alert('in'+id);
-    	firebase.database().ref("RollProperty/"+firebase.auth().currentUser.uid+"/"+id).update({
+	$scope.createRoll = function(id) {
+    	 //alert('in'+id);firebase.auth().currentUser.uid+"/"+id
+		 var newRef = firebase.database().ref("RollProperty/").push({
     	  "fetchCount" : "1",
    		  "joiners" : {},
-   		  "name" : "New "+id,
+   		  "name" : 'New '+id,
    		  "sponsor" : "ELMNZ",
    		  "start" : "today",
-   		  "totalJoined" : "0"
+   		  "totalJoined" : "0",
+   		  "openTo":"public",
+   		  "creator":firebase.auth().currentUser.uid	  
    	 });
-	firebase.database().ref("RollPropertyJoiners/"+id).update({
- 		  "joiners" : {
+	firebase.database().ref("RollPropertyJoiners/"+newRef.key+"/").push({
  			  userId:firebase.auth().currentUser.uid
- 		  },
  	 });
     };
  }

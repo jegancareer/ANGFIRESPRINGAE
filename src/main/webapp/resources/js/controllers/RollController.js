@@ -15,9 +15,9 @@ var RollController = function($scope, $http, $routeParams, $firebaseObject) {
     App.RollProperty($scope, $routeParams, $firebaseObject);
     //https://angularfirebase.com/lessons/managing-firebase-user-relationships-to-database-records/
     $scope.optThisRoll = function(id) {
-	 firebase.database().ref("RollProperty/" + id + "/joiners/"+firebase.auth().currentUser.uid).update({
-		 userId:firebase.auth().currentUser.uid
-	 });
+    	firebase.database().ref("RollPropertyJoiners/"+id+"/").push({
+			  userId:firebase.auth().currentUser.uid
+    	});
     };
     
 };

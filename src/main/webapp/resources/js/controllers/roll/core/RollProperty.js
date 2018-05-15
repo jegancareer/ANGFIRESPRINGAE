@@ -27,27 +27,17 @@ $scope.run = function () {
 
 
 var starCountRef = firebase.database().ref('RollProperty/'+$routeParams.id);
-starCountRef.on('value', function(snapshot) {
-updateRollProperty(snapshot);
+	starCountRef.on('value', function(snapshot) {
+	updateRollProperty(snapshot);
+});
+	
+var joinCountRef = firebase.database().ref('RollPropertyJoiners/'+$routeParams.id);
+	joinCountRef.on('value', function(joinshot) {
+	updateJoinerProperty(joinshot);
 });
 
-function updateRollProperty(snapshot) {	
-	//alert(' - '+ JSON.stringify(snapshot.val()));
-	//update DOM/model/VIEW via FIREBASE event
-	if(!$scope.$$phase) {
-		$scope.$apply(function() {$scope.fireRollName =snapshot.child("name").val();});
-	} else {
-		$scope.fireRollName =snapshot.child("name").val();
-	}
-	$scope.fireSponsorName = snapshot.child("sponsor").val();
-	$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
-	$scope.monthlyImports.unshift(77777777);
-	$scope.firePrgrCount= 100;
-	$scope.fireTotalFetchCount=10; 
-	$scope.fireTotalPplCount=10; 
-	////$scope.fireInitPrgrCount=0;
-	//$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2014.csv";
-	joinerArray = snapshot.child("joiners").val();
+function updateJoinerProperty(joinshot) {
+	joinerArray = joinshot.val();
 	$scope.fireDataJsonObj=[]
 	value='';
 	
@@ -66,15 +56,15 @@ function updateRollProperty(snapshot) {
 		
 		$scope.run();
 	} else {
-		//TODO:No where in Firestore for now so keeping this iteration and calling run method each time!
-		Object.keys(joinerArray).forEach(function(key) {
-			firebase.database().ref("RollJoiners/"+joinerArray[key].userId).child("_details/")
+		//TODO:No where clause with IN Firestore for now so keeping this iteration and calling run method each time!
+		Object.values(joinerArray).forEach(function(key) {
+			firebase.database().ref("RollJoiners/"+key.userId).child("_details/")
 				.once("value", function(userSnap) { 
 						//console.log(userSnap.val());
 						value=userSnap.val().email;
 						// value = key;//joinerArray[key];
 						if(null !=firebase.auth().currentUser && null !=firebase.auth().currentUser.uid &&
-								key==firebase.auth().currentUser.uid) {
+								key.userId==firebase.auth().currentUser.uid) {
 							rolmen = {"year":"2001","CTY_CODE":"yes","CTYNAME":""+"You \u{2665}","id":"1"};
 						} else {
 							rolmen = {"year":"2001","CTY_CODE":"no","CTYNAME":value.slice(0,10)+"..","id":"1"};
@@ -85,7 +75,24 @@ function updateRollProperty(snapshot) {
 					});
 		});
 	}
-	
+}	
+
+function updateRollProperty(snapshot) {	
+	//alert(' - '+ JSON.stringify(snapshot.val()));
+	//update DOM/model/VIEW via FIREBASE(on) event
+	if(!$scope.$$phase) {
+		$scope.$apply(function() {$scope.fireRollName =snapshot.child("name").val();});
+	} else {
+		$scope.fireRollName =snapshot.child("name").val();
+	} 
+	$scope.fireSponsorName = snapshot.child("sponsor").val();
+	$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
+	$scope.monthlyImports.unshift(77777777);
+	$scope.firePrgrCount= 100;
+	$scope.fireTotalFetchCount=10; 
+	$scope.fireTotalPplCount=10; 
+	////$scope.fireInitPrgrCount=0;
+	//$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2014.csv";
 	document.getElementsByClassName("thirdLabel")[0].innerHTML="*By " + $scope.fireSponsorName;
 	document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont +" Joined.";
 	$scope.monthlyImports.unshift(77777777);
@@ -111,19 +118,3 @@ if ($scope.fireDataJsonObj == undefined) {
 
 	$scope.run();
 }
-
-
-
-
-
-/* 
-
-RollProperty/{id}/joiners/{id2} <=> RollJoiners/{id2} => RollJoiners/{id2}
-
-var fb = firebase.database().ref("RollProperty/1"); 
-fb.child("joiners").once("value", function(userSnap) {
-   firebase.database().ref("RollJoiners").once("value", function(mediaSnap) {
-        console.log(userSnap.val(), mediaSnap.val());
-   });
-});
-*/
