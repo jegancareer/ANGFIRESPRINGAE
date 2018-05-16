@@ -2,7 +2,7 @@
 
 var AngularSpringApp = {};
 
-var config = { };
+var config = {};
 	firebase.initializeApp(config);
 
 	/*var rec = database.ref().child('RollProperty/1').once('value').then(function(snapshot) {
@@ -74,11 +74,14 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: AuthController
     });
     
+    $routeProvider.when('/rolllist', {
+        templateUrl: 'rolllist/list',
+        controller: RollListController
+    });
     
-   
     
     
-    $routeProvider.otherwise({redirectTo: '/cars'});
+    $routeProvider.otherwise({redirectTo: '/rolllist'});
 }]);
 
 
