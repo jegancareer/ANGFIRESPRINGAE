@@ -1,9 +1,5 @@
 'use strict';
 
-/**
- * AuthController
- * @constructor
- */
 var AuthController = function($scope, $http, $rootScope) {
     $scope.fetchLogin = function() {
     	//alert($rootScope.oldURL)
@@ -20,10 +16,6 @@ var AuthController = function($scope, $http, $rootScope) {
     	    //alert(firebase.auth.getCurrentUser());
     	    ui.start('#firebaseui-auth-container', uiConfig);
     	}
-       /* $http.get('cars/carlist.json').success(function(carList){
-            $scope.cars = carList;
-        });
-        */
     };
 
     $scope.fetchLogin();

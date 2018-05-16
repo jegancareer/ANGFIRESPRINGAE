@@ -5,12 +5,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: xvitcoder
- * Date: 12/20/12
- * Time: 11:14 PM
- */
 @Service("carService")
 public class CarServiceImpl implements CarService {
     private static List<String> carList = new ArrayList<String>();

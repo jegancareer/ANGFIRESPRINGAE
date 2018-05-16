@@ -7,12 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.thymeleaf.util.DateUtils;
 
-/**
- * Created with IntelliJ IDEA.
- * User: xvitcoder
- * Date: 12/21/12
- * Time: 12:23 AM
- */
 @Controller
 @RequestMapping("/rollcreate")
 public class RollCreateController {

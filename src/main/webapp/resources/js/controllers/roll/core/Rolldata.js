@@ -25,20 +25,5 @@ App.RollData = function($scope)
         //Sum total deficit for each month
         var totalImport=0;
         //$scope.monthlyImports.push(1000);
-        /*for (var y=0; y < $scope.countriesGrouped.length; y++) {
-            var yearGroup=$scope.countriesGrouped[y];
-            for (var m=0; m < yearGroup.values.length; m++) {
-                var monthGroup=yearGroup.values[m];
-                for (var c=0; c < monthGroup.values.length; c++) {
-                    var country=monthGroup.values[c];
-                    totalImport= Number(totalImport) + Number(country.Imports)*10000000;
-                }
-                $scope.monthlyImports.push(totalImport);
-            }
-        }*/
-	//Start refreshing Chart
-     //$scope.run();
-    //refreshIntervalId = setInterval($scope.run, $scope.delay);
-    //});
 	}
 }
