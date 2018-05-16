@@ -1,2 +1,10 @@
 <h3 style="margin-left:100px;color:red;">Rolling: ...{{sprRoll}}</h3>
-<button class="btn btn-danger" ng-click="createRoll(sprRoll)">Create roll (F)</button>
+
+<form name="myForm" ng-submit="submitCreateRoll()">
+    name<input ng-model="fields.name"  />
+    sponsor<input ng-model="fields.sponsor"  />
+    start<input ng-model="fields.start"  />
+  	openTo <input ng-model="fields.openTo"  />
+    <input style="visibility:hidden"  ng-model="fields.id" value="{{sprRoll}}" />
+    <input type="submit" class="btn btn-danger" value="Create roll (F)"/>
+</form>

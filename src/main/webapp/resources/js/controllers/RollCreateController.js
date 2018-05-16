@@ -16,20 +16,23 @@ var RollCreateController = function($scope, $http, $location, $rootScope, $route
 	    };
 	$scope.fetchRoll();
 
-	$scope.createRoll = function(id) {
+	
+	$scope.submitCreateRoll = function() {
     	 //alert('in'+id);firebase.auth().currentUser.uid+"/"+id
-		 var newRef = firebase.database().ref("RollProperty/").push({
-    	  "fetchCount" : "1",
-   		  "joiners" : {},
-   		  "name" : 'New '+id,
-   		  "sponsor" : "ELMNZ",
-   		  "start" : "today",
-   		  "totalJoined" : "0",
-   		  "openTo":"public",
-   		  "creator":firebase.auth().currentUser.uid	  
-   	 });
-	firebase.database().ref("RollPropertyJoiners/"+newRef.key+"/").push({
- 			  userId:firebase.auth().currentUser.uid
- 	 });
+		var data=$scope.fields;
+		console.log(data);
+		var newRef = firebase.database().ref("RollProperty/").push({
+	    	  "fetchCount" : "1",
+	   		  "name" : data.name,
+	   		  "sponsor" : data.sponsor,
+	   		  "start" : data.start,
+	   		  "totalJoined" : "0",
+	   		  "openTo":data.openTo,
+	   		  "creator":firebase.auth().currentUser.uid	  
+	   	 });
+		 firebase.database().ref("RollPropertyJoiners/"+newRef.key+"/").push({
+	 			  userId:firebase.auth().currentUser.uid
+	 	 });
+		 $location.path('/roll/'+newRef.key)	 
     };
  }
