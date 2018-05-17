@@ -13,8 +13,9 @@ var RollListController = function($scope, $http, $location, $rootScope, $routePa
 		 				console.log(keyvalArr[arr]);
 		 				if(!$scope.$$phase) {
 		 					$scope.$apply(function() {$scope.rolls.push({key:arr, value:keyvalArr[arr].name});});
+		 					console.log('1');
 		 				} else {
-		 					$scope.rolls.push(arr);
+		 					$scope.rolls.push({key:arr, value:keyvalArr[arr].name});console.log('2');
 		 				} 
 	 			});
 	 			

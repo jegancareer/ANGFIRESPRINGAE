@@ -1,12 +1,27 @@
 var RollController = function($scope, $http, $routeParams, $firebaseObject) {
 	//alert($routeParams.id);
-    $scope.fetchRoll = function(id) {
+    $scope.fetchRollImages = function(id) {
     	 $scope.roll=id;
         $http.get('roll/roll.json').success(function(rolling){
             //$scope.roll = rolling;
         });
+        
+        $scope.imageUrls=[];
+        //fetch images
+        for(i=0;i<5;i++) {
+        	firebase.storage().ref(id).child('/nature'+i+'.jpg').getDownloadURL().then(function(url){
+        		if(!$scope.$$phase) {
+ 					$scope.$apply(function() {$scope.imageUrls.push(url);});
+ 				} else {
+ 					$scope.imageUrls.push(url);
+ 				} console.log(' - '+url)
+        			
+        	}).catch(function(error) {
+        		console.log(error.code);
+        	});
+        }
     };
-    $scope.fetchRoll($routeParams.id);
+    $scope.fetchRollImages($routeParams.id, $firebaseObject);
     App.RollGlobals($scope);
     App.RollGradiants($scope);
     App.RollData($scope);
