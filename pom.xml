@@ -8,7 +8,7 @@
   <version>0.1.0-SNAPSHOT</version>
 
   <groupId>elmnz</groupId>
-  <artifactId>gapFireRoll</artifactId>
+  <artifactId>gaproll</artifactId>
 
   <properties>
     <appengine.maven.plugin.version>1.3.2</appengine.maven.plugin.version>
@@ -120,7 +120,7 @@
 	            <port>9090</port>
 	          </httpConnector>
 	          <webApp>
-	            <contextPath>/gapFireRoll</contextPath>
+	            <contextPath>/gaproll</contextPath>
 	          </webApp>
 	        </configuration>
 	      </plugin>
