@@ -8,14 +8,22 @@ var RollListController = function($scope, $http, $location, $rootScope, $routePa
 	 		var starCountRef = firebase.database().ref('RollProperty');
 	 		starCountRef.on('value', function(snapshot) {
 	 			keyvalArr = snapshot.val()
-	 			console.log(keyvalArr);
+	 			//console.log(keyvalArr);
 	 			Object.keys(keyvalArr).forEach(function(arr) {
 		 				console.log(keyvalArr[arr]);
 		 				if(!$scope.$$phase) {
-		 					$scope.$apply(function() {$scope.rolls.push({key:arr, value:keyvalArr[arr].name});});
-		 					console.log('1');
+		 					$scope.$apply(function() {$scope.rolls.push(
+		 							{	key:arr, 
+		 								value:keyvalArr[arr].name,
+		 								newpa:keyvalArr[arr].sponsor
+		 							}
+		 							
+		 							
+		 							);});
+		 					//console.log('1');
 		 				} else {
-		 					$scope.rolls.push({key:arr, value:keyvalArr[arr].name});console.log('2');
+		 					$scope.rolls.push({key:arr, value:keyvalArr[arr].name, newpa:keyvalArr[arr].sponsor});
+		 					//console.log('2');
 		 				} 
 	 			});
 	 			
