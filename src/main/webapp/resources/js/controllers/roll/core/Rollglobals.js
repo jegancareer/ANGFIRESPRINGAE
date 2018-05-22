@@ -56,15 +56,14 @@ var header2 = d3.select(document.getElementById("header2"));
 $scope.e_fill= d3.scale.ordinal().range(["#ed5e5e","#B32D45","#9B001C","#F73E5F","#F76F87"]);
 $scope.i_fill= d3.scale.ordinal().range(["#00AC6B","#20815D","#007046","#35D699","#60D6A9"]);
 
-$scope.monthsMap=["Pisces","Aries","Taurus","Sagittarius","Gemini","Scorpio", "Leo", "Virgo", "Cancer", "Libra", "Capricorn", "Aquarius"];
-d3.select(document.getElementById("bpg"))
-    .style("min-width",($scope.outerRadius*2 + 0) + "px");
+//$scope.monthsMap=["Pisces","Aries","Taurus","Sagittarius","Gemini","Scorpio", "Leo", "Virgo", "Cancer", "Libra", "Capricorn", "Aquarius"];
+
+//d3.select(document.getElementById("bpg")).style("min-width",($scope.outerRadius*2 + 0) + "px");
 
 
-$scope.playPause=d3.select(document.getElementById("playPause"));
+//$scope.playPause=d3.select(document.getElementById("playPause"));
 
-d3.select(document.getElementById("imgDiv"))
-    .style("left",(($scope.outerRadius-$scope.monthWidth/2))+"px");
+//d3.select(document.getElementById("imgDiv")).style("left",(($scope.outerRadius-$scope.monthWidth/2))+"px");
 
 $scope.svg = d3.select(document.getElementById("svgDiv"))
     .style("width", ($scope.outerRadius*2) + "px")
@@ -72,6 +71,7 @@ $scope.svg = d3.select(document.getElementById("svgDiv"))
     .append("svg")
     .attr("id","svg")
     .style("width", ($scope.outerRadius*2) + "px")
+    .style("margin-left", "25px")
     .style("height", ($scope.outerRadius*2+100) + "px");
 
 
@@ -94,17 +94,17 @@ $scope.arc = d3.svg.arc()
 
 $scope.dGroup = $scope.svg.append("g")
     .attr("class","mainLabel")
-    .attr("transform", "translate(" +  0+ ","  + 20 +")")
+    .attr("transform", "translate(" +  18+ ","  + 40 +")")
     //.attr("transform", "translate(" + (($scope.outerRadius + $scope.innerRadius *.7/2)-($scope.outerRadius-($scope.innerRadius *.8/2))-180) + ","  + 0 +")")
 
 $scope.dGroup.append("text")
     .attr("class","mainLabel")
-    .attr("transform", "translate(" + ($scope.outerRadius - 20) + ","  + ($scope.outerRadius + 30) +")")
+    .attr("transform", "translate(" + ($scope.outerRadius - 18) + ","  + ($scope.outerRadius + 30) +")")
     .style("font-size","0px");
 
 $scope.dGroup.append("text")
     .attr("class","secondLabel")
-    .attr("transform", "translate(" + ($scope.outerRadius - 60) + ","  + ($scope.outerRadius * 1.15) +")")
+    .attr("transform", "translate(" + ($scope.outerRadius - 60) + ","  + ($scope.outerRadius * 1.17) +")")
     .text("*Person joined and in counting")
     .style("font-size","0px");
 

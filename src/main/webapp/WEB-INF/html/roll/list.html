@@ -1,6 +1,14 @@
-<h3 style="margin-left:100px;color:red;">Rolling List:</h3>
-<ul>
-    <li ng-repeat="roll in rolls" >
-    	<a ng-href="#/roll/{{roll.key}}">{{roll.value}}</a>
-    </li>
-</ul>
+<h3 style="margin-left:100px;color:red;">Rollings</h3>
+
+<div class="card-deck">
+  <div class="card text-white bg-success" ng-repeat="roll in rolls">
+    <img class="card-img-top" src=".../100px180/" alt="Card image cap"/>
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text"> This content is a little bit longer. {{roll.key}}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>

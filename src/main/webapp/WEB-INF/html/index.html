@@ -63,6 +63,18 @@
 		<a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Bootstrap">
 			LOGO
 		</a>
+		<div class="dropdown">
+		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" 
+		  		aria-haspopup="true" aria-expanded="false">
+		    Menu
+		  </button>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="#/cars">cars</a>
+		    <a class="dropdown-item" href="#/rolllist">List rolls</a>
+		    <a class="dropdown-item" href="#/auth">Profile</a>
+		    <a class="dropdown-item" href="#/rollcreate">Create new</a>
+		  </div>
+		</div>
 	</header> 
 	<!--ul class="menu">
 	    <li><a href="#/cars">LOGO </a></li>
@@ -75,7 +87,7 @@
 <label> Search any:</label><input type="text" class="form-control"/> 
 <label> From Group: </label><input type="text" class="form-control"/> 
 <label> In your City:</label> <input type="text" class="form-control"/> 
-<button>Search</button> 
+<button class="btn btn-danger" onclick="location.href='#/rolllist'">Search</button> 
 </div>
 
 <hr class="" />      

@@ -1,14 +1,15 @@
 App.RollProperty = function($scope, $routeParams, $firebaseObject){
 	
-$scope.initialize = function (prgcount, totalChordCount) {
+
+ $scope.initialize = function (prgcount, totalChordCount) {
 	//progress bar count and name of progress display
-    for (var i=0; i < prgcount; i++) {
+	 /* for (var i=0; i < prgcount; i++) {
         var o={};
         o.index=i;
         o.month=$scope.monthsMap[i % 12];
         o.year=$scope.baseYear + Math.floor(i/12);
         $scope.months.push(o);
-    }
+    }*/
 
     $scope.createVerticalGradient('svg','gradient1',[
         {offset:'0%', 'stop-color':'#00AC6B'},
@@ -19,6 +20,7 @@ $scope.initialize = function (prgcount, totalChordCount) {
     $scope.gradientGroup.transition().select("rect").delay($scope.delay*1.5).attr("width",12);
     $scope.dGroup.transition().selectAll("text").delay($scope.delay*1.5).style("font-size","10px");
 }
+
 
 $scope.run = function () {
 	$scope.fetchData($scope.fireDataJsonObj, $scope.fireTotalFetchCount);	
