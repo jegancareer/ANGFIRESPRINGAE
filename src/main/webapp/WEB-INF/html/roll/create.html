@@ -1,10 +1,29 @@
 <h3 style="margin-left:100px;color:red;">Rolling: ...{{sprRoll}}</h3>
 
 <form name="myForm" ng-submit="submitCreateRoll()">
-    name<input ng-model="fields.name"  />
-    sponsor<input ng-model="fields.sponsor"  />
-    start<input ng-model="fields.start"  />
-  	openTo <input ng-model="fields.openTo"  />
+   <div class="form-row">
+    <div class="form-group col-md-3">
+     <label> name:</label>
+      <input type="text"  ng-model="fields.name"  class="form-control"/> 
+    </div>
+    <div class="form-group col-md-3">
+      <label> sponsor: </label>
+       <input type="text" ng-model="fields.sponsor" class="form-control"/> 
+    </div>
+    <div class="form-group col-md-3">
+    <label> start time:</label>
+    <input type="text" ng-model="fields.start" class="form-control"/> 
+    </div>
+    <div class="form-group col-md-3">
+    <label> openTo:</label>
+    <input type="text" ng-model="fields.openTo" class="form-control"/> 
+    </div>
+    <div class="col-auto">
+    	 <input type="submit" class="btn btn-danger" value="Create roll (F)"/>
+    </div>
+</div>
     <input style="visibility:hidden"  ng-model="fields.id" value="{{sprRoll}}" />
-    <input type="submit" class="btn btn-danger" value="Create roll (F)"/>
+     
 </form>
+
+

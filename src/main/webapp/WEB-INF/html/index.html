@@ -75,21 +75,40 @@
 		    <a class="dropdown-item" href="#/rollcreate">Create new</a>
 		  </div>
 		</div>
-	</header> 
-	<!--ul class="menu">
-	    <li><a href="#/cars">LOGO </a></li>
-	    <li><a href="#/rolllist">Roll list</a></li>
-	    <li><a href="#/auth">Login</a></li>
-	   <li><a href="#/rollcreate">Roll Create</a></li> 
-	</ul-->
+	</header>  
+	
 <br/>
-<div class="col-auto">
-<label> Search any:</label><input type="text" class="form-control"/> 
-<label> From Group: </label><input type="text" class="form-control"/> 
-<label> In your City:</label> <input type="text" class="form-control"/> 
-<button class="btn btn-danger" onclick="location.href='#/rolllist'">Search</button> 
-</div>
 
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Find your item here!
+        </button>
+      </h5>
+    </div>
+    <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
+      	<div class="form-row">
+		    <div class="form-group col-md-3">
+		     <label> Search any:</label>
+		      <input type="text" class="form-control"/> 
+		    </div>
+		    <div class="form-group col-md-3">
+		      <label> From Group: </label>
+		       <input type="text" class="form-control"/> 
+		    </div>
+		    <div class="form-group col-md-3">
+		    <label> In your City:</label>
+		    <input type="text" class="form-control"/> 
+		    </div>
+		    <div class="col-auto">
+		    	<button class="btn btn-danger mb-2" onclick="location.href='#/rolllist'">Search</button> 
+		    </div>
+		</div>
+    </div>
+    </div>
+</div>
 <hr class="" />      
 <div>   
     <div ng-view=""></div>
