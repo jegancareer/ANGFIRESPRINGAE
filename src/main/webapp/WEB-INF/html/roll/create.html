@@ -18,8 +18,10 @@
     <label> openTo:</label>
     <input type="text" ng-model="fields.openTo" class="form-control"/> 
     </div>
+    <input type="file" id="file" class="button" ng-model="file" name="file" />
+    
     <div class="col-auto">
-    	 <input type="submit" class="btn btn-danger" value="Create roll (F)"/>
+    	 <button type="submit" class="btn btn-danger" value="Create roll (F)"/>
     </div>
 </div>
     <input style="visibility:hidden"  ng-model="fields.id" value="{{sprRoll}}" />
