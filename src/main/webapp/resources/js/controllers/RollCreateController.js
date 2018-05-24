@@ -53,7 +53,7 @@ var RollCreateController = function($scope, $http, $location, $rootScope, $route
 	 			  userId:firebase.auth().currentUser.uid
 	 	 });
 		 
-		 firebase.storage().ref().child(newRef.key+"/nature1.jpg").put(file, "{contentType: 'image/jpeg'}").then(function(snapshot) {
+		 firebase.storage().ref().child(newRef.key+"/nature1.jpg").put(file).then(function(snapshot) {
 			  console.log('Uploaded !');
 		 });
 		 
