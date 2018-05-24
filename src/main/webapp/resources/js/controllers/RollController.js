@@ -1,4 +1,9 @@
-var RollController = function($scope, $http, $routeParams, $firebaseObject) {
+var RollController = function($scope, $http, $location, $routeParams, $firebaseObject) {
+	if(null == firebase.auth().currentUser) {
+ 		//$rootScope.oldURL='/rollcreate';
+ 		$location.path('/auth');return;
+ 	} 
+	
 	//alert($routeParams.id);
     $scope.fetchRollImages = function(id) {
     	 $scope.roll=id;
