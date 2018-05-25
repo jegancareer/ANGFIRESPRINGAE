@@ -27,7 +27,7 @@ App.RollUpdate = function($scope){
 	            return d.label;
 	        });
 	
-	    var td=$scope.monthlyImports[0]
+	    var td=$scope.monthlyImports[0];
 	    var fs=$scope.innerRadius *.1;
 	    td=$scope.formatCurrency(td);
 	

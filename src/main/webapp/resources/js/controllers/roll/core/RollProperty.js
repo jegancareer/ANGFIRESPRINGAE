@@ -53,7 +53,7 @@ function updateJoinerProperty(joinshot) {
 			rolmen = {"year":"2001","CTY_CODE":"no","CTYNAME":"ELMNZ U","id":"1"};
 			$scope.fireDataJsonObj.push(rolmen);
 		 }
-		
+		updateCheckOnJoined(2);
 		$scope.run();
 	} else {
 		//TODO:No where clause with IN Firestore for now so keeping this iteration and calling run method each time!
@@ -80,8 +80,20 @@ function updateJoinerProperty(joinshot) {
 						$scope.run();	
 					});
 		});
+		updateCheckOnJoined(Object.keys(joinerArray).length);
 	}
-}	
+}
+
+function updateCheckOnJoined(jonied) {
+	$scope.fireHtmlcont=jonied;	
+	$scope.monthlyImports.push(jonied);
+	//$scope.monthlyImports.shift();
+	document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont +" Joined.";
+	//check if roll is full?
+	if($scope.fireHtmlcont==$scope.fireTotalFetchCount) {
+		$scope.disableOptIn=true;
+	}
+}
 
 function updateRollProperty(snapshot) {	
 	//alert(' - '+ JSON.stringify(snapshot.val()));
@@ -92,27 +104,24 @@ function updateRollProperty(snapshot) {
 		$scope.fireRollName =snapshot.child("name").val();
 	} 
 	$scope.fireSponsorName = snapshot.child("sponsor").val();
-	$scope.fireHtmlcont=snapshot.child("totalJoined").val();	
-	$scope.monthlyImports.unshift(77777777);
 	$scope.firePrgrCount= 100;
-	$scope.fireTotalFetchCount=10; 
+	$scope.fireTotalFetchCount=snapshot.child("maxLimit").val(); 
 	$scope.fireTotalPplCount=10; 
 	////$scope.fireInitPrgrCount=0;
 	//$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2014.csv";
 	document.getElementsByClassName("thirdLabel")[0].innerHTML="*By " + $scope.fireSponsorName;
-	document.getElementsByClassName("secondLabel")[0].innerHTML=$scope.fireHtmlcont +" Joined.";
-	$scope.monthlyImports.unshift(77777777);
+	
 }
 
 
 
 //Default
 if ($scope.fireDataJsonObj == undefined) {
-	$scope.monthlyImports.unshift(0);
+	//$scope.monthlyImports.unshift(0);
 	//$scope.fireRollName ='anonymous';
 	$scope.firePrgrCount= 100; //looping progress bar
-	$scope.fireTotalFetchCount=5;// //
-	$scope.fireTotalPplCount=5; 
+	if ($scope.fireTotalFetchCount == undefined) $scope.fireTotalFetchCount=5;// //
+	if ($scope.fireTotalPplCount == undefined)$scope.fireTotalPplCount=5; 
 	$scope.fireInitPrgrCount=$scope.fireTotalPplCount-2;
 	//$scope.fireDataJsonObj="resources/d4/data/ustrade_2000-2015.csv";
 	$scope.fireDataJsonObj=[

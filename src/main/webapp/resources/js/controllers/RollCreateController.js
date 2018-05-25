@@ -36,19 +36,18 @@ var RollCreateController = function($scope, $http, $location, $rootScope, $route
 			 }
 		 }
 		
-		
     	 //alert('in'+id);firebase.auth().currentUser.uid+"/"+id
 		var data=$scope.fields;
 		console.log(data);
 		var newRef = firebase.database().ref("RollProperty/").push({
-	    	  "fetchCount" : "1",
+	    	  "maxLimit" : "10",
 	   		  "name" : data.name,
 	   		  "sponsor" : data.sponsor,
 	   		  "start" : data.start,
-	   		  "totalJoined" : "0",
 	   		  "openTo":data.openTo,
 	   		  "creator":firebase.auth().currentUser.uid	  
 	   	 });
+		
 		 firebase.database().ref("RollPropertyJoiners/"+newRef.key+"/").push({
 	 			  userId:firebase.auth().currentUser.uid
 	 	 });
