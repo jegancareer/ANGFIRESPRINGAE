@@ -13,21 +13,22 @@ var RollInviteController = function($scope, $http, $location, $rootScope, $route
 	
     $scope.showListofUsers = function() {
 		 $scope.invites=[];
-		 var starCountRef = firebase.database().ref("RollPropertyInvitees/"+$scope.roll+"/");
+		 var starCountRef = firebase.database().ref("RollPropertyInvitees/"+$scope.roll+"/"+firebase.auth().currentUser.uid+"/");
 	 		starCountRef.on('value', function(snapshot) {
 	 			keyvalArr = snapshot.val()
-	 			//console.log(keyvalArr);
-	 			Object.keys(keyvalArr).forEach(function(arr) {
-	 				console.log(keyvalArr[arr].email);
-	 				if(!$scope.$$phase) {
-	 					$scope.$apply(function() {
-	 						$scope.invites.push({"email":keyvalArr[arr].email});
-	 					});
-	 				} else {
-	 					$scope.invites.push({"email":keyvalArr[arr].email});
-	 				}
-	 			}
-	 		)}
+	 			if(null != keyvalArr) {
+		 			Object.keys(keyvalArr).forEach(function(arr) {
+		 				console.log(keyvalArr[arr].email);
+		 				if(!$scope.$$phase) {
+		 					$scope.$apply(function() {
+		 						$scope.invites.push({"email":keyvalArr[arr].email});
+		 					});
+		 				} else {
+		 					$scope.invites.push({"email":keyvalArr[arr].email});
+		 				}
+		 			}
+		 		)}
+	 		}
 	 	);
 	 }
 	//show list of users invited by me on this roll!
@@ -36,7 +37,7 @@ var RollInviteController = function($scope, $http, $location, $rootScope, $route
 	$scope.submitInviteRoll = function() {
 		var data=$scope.fields;
 		console.log(data);
-		var newRef = firebase.database().ref("RollPropertyInvitees/"+$scope.roll+"/").push({
+		var newRef = firebase.database().ref("RollPropertyInvitees/"+$scope.roll+"/"+firebase.auth().currentUser.uid+"/").push({
 	   		  "email" : data.email,
 	   		  "description":data.desc,
 	   		  "creator":firebase.auth().currentUser.uid	  
