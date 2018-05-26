@@ -1,5 +1,6 @@
 //$routeParams, $firebaseObject - needed?? YESSSS 
 var RollInviteController = function($scope, $http, $location, $rootScope, $routeParams, $firebaseObject) {
+	 $scope.invites=[];
 	 $scope.fetchRoll = function() {
 		 	if(null == firebase.auth().currentUser) {
 		 		//$rootScope.oldURL='/rollcreate';
@@ -9,7 +10,28 @@ var RollInviteController = function($scope, $http, $location, $rootScope, $route
 		 	}
 	    };
 	$scope.fetchRoll();
-
+	
+    $scope.showListofUsers = function() {
+		 $scope.invites=[];
+		 var starCountRef = firebase.database().ref("RollPropertyInvitees/"+$scope.roll+"/");
+	 		starCountRef.on('value', function(snapshot) {
+	 			keyvalArr = snapshot.val()
+	 			//console.log(keyvalArr);
+	 			Object.keys(keyvalArr).forEach(function(arr) {
+	 				console.log(keyvalArr[arr].email);
+	 				if(!$scope.$$phase) {
+	 					$scope.$apply(function() {
+	 						$scope.invites.push({"email":keyvalArr[arr].email});
+	 					});
+	 				} else {
+	 					$scope.invites.push({"email":keyvalArr[arr].email});
+	 				}
+	 			}
+	 		)}
+	 	);
+	 }
+	//show list of users invited by me on this roll!
+	$scope.showListofUsers();
 	
 	$scope.submitInviteRoll = function() {
 		var data=$scope.fields;
@@ -25,18 +47,25 @@ var RollInviteController = function($scope, $http, $location, $rootScope, $route
 				} else {
 					$scope.fields.email=""
 				}
-			  //show list of users invited by me!
-			  
+			  //show list of users invited by me on this roll!
+			  $scope.showListofUsers();
 			  
 		 });
-		 
-		 /*firebase.database().ref("RollPropertyJoiners/"+newRef.key+"/").push({
-	 			  userId:firebase.auth().currentUser.uid
+		 var email = data.email;
+		 email = email.replace(new RegExp('\\.', 'g'), '=dot=');
+
+		 firebase.database().ref("RollJoinersInvites/"+email+"/"+$scope.roll+"/").push({
+			 	  "rollId":$scope.roll,
+			 	  "description":data.desc,
+			 	  "email":data.email,
+	 			  "creator":firebase.auth().currentUser.uid
 	 	 });
-		 
+		
+		 /*
 		 firebase.storage().ref().child(newRef.key+"/nature1.jpg").put(file).then(function(snapshot) {
 			  console.log('Uploaded !');
 		 });*/
 		 //$location.path('/roll/'+newRef.key) 
     };
+    
  }
