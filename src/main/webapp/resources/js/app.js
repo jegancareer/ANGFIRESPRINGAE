@@ -77,6 +77,11 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: RollInviteController
     });
     
+    $routeProvider.when('/myinvites', {
+        templateUrl: 'myinvites/list',
+        controller: MyInvitesController
+    });
+    
     $routeProvider.otherwise({redirectTo: '/rolllist'});
 }]);
 
