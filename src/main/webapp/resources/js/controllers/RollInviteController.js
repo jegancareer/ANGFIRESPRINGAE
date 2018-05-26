@@ -3,10 +3,15 @@ var RollInviteController = function($scope, $http, $location, $rootScope, $route
 	 $scope.invites=[];
 	 $scope.fetchRoll = function() {
 		 	if(null == firebase.auth().currentUser) {
-		 		//$rootScope.oldURL='/rollcreate';
 		 		$location.path('/auth');
 		 	} else {
 		 		$scope.roll=$routeParams.id
+		 		//load the roll details
+		 		var starCountRef = firebase.database().ref('RollProperty/'+$routeParams.id);
+		 			starCountRef.once('value', function(snapshot) {
+		 				$scope.fireRollName =snapshot.child("name").val();
+		 				$scope.fireSponsorName = snapshot.child("sponsor").val();
+		 		});
 		 	}
 	    };
 	$scope.fetchRoll();
@@ -37,7 +42,8 @@ var RollInviteController = function($scope, $http, $location, $rootScope, $route
 	$scope.submitInviteRoll = function() {
 		var data=$scope.fields;
 		console.log(data);
-		var newRef = firebase.database().ref("RollPropertyInvitees/"+$scope.roll+"/"+firebase.auth().currentUser.uid+"/").push({
+		var newRef = firebase.database().ref("RollPropertyInvitees/"+$scope.roll+"/"+firebase.auth().currentUser.uid+"/")
+			.push({
 	   		  "email" : data.email,
 	   		  "description":data.desc,
 	   		  "creator":firebase.auth().currentUser.uid	  
@@ -56,6 +62,8 @@ var RollInviteController = function($scope, $http, $location, $rootScope, $route
 		 email = email.replace(new RegExp('\\.', 'g'), '=dot=');
 
 		 firebase.database().ref("RollJoinersInvites/"+email+"/"+$scope.roll+"/").push({
+			 	  "name":$scope.fireRollName,
+			 	  "sponsor":$scope.fireSponsorName,
 			 	  "rollId":$scope.roll,
 			 	  "description":data.desc,
 			 	  "email":data.email,

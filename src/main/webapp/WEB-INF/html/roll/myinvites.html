@@ -3,8 +3,8 @@
 <div class="card-deck">
   <div class="card text-white bg-success" ng-repeat="roll in rolls">
     <div class="card-body" onclick="location.href='#/roll/{{roll.key}}'">
-      <h5 class="card-title">{{roll.value}}</h5>
-      <p class="card-text"> This content sponsored by <b>{{roll.newpa}}</b><br/> Is a little bit longer. {{roll.key}}</p>
+      <h5 class="card-title">{{roll.name}} {{roll.sponsor}}</h5>
+      <p class="card-text">Desc: {{roll.value}} <b>{{roll.newpa}}</b><br/> Key: {{roll.key}}</p>
     </div>
     <div class="card-footer">
       <small class="text-muted">Last updated 3 mins ago</small>

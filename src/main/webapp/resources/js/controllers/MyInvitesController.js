@@ -18,7 +18,9 @@ var MyInvitesController = function($scope, $http, $location, $rootScope, $routeP
 			 					$scope.$apply(function() {$scope.rolls.push(
 			 							{	key:Object.values(keyvalArr[arr])[0].rollId, 
 			 								value:Object.values(keyvalArr[arr])[0].description,
-			 								newpa:Object.values(keyvalArr[arr])[0].creator
+			 								newpa:Object.values(keyvalArr[arr])[0].creator,
+			 								name:Object.values(keyvalArr[arr])[0].name,
+			 								sponsor:Object.values(keyvalArr[arr])[0].sponsor
 			 							}
 			 							);});
 			 					//console.log('1');
@@ -26,7 +28,9 @@ var MyInvitesController = function($scope, $http, $location, $rootScope, $routeP
 			 					$scope.rolls.push(
 			 							{	key:Object.values(keyvalArr[arr])[0].rollId, 
 			 								value:Object.values(keyvalArr[arr])[0].description,
-			 								newpa:Object.values(keyvalArr[arr])[0].creator
+			 								newpa:Object.values(keyvalArr[arr])[0].creator,
+			 								name:Object.values(keyvalArr[arr])[0].name,
+			 								sponsor:Object.values(keyvalArr[arr])[0].sponsor
 			 							}
 			 							);
 			 					//console.log('2');
