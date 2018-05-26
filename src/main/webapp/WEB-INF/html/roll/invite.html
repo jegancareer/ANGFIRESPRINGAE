@@ -1,0 +1,21 @@
+<h3 style="margin-left:100px;color:red;">Rolling: ...{{roll}}</h3>
+
+<form name="myForm" ng-submit="submitInviteRoll()">
+   <div class="form-row">
+    <div class="form-group col-md-3">
+     <label> Email:</label>
+      <input type="text"  ng-model="fields.email"  class="form-control"/> 
+    </div>
+     <div class="form-group col-md-3">
+     <label> Roll description:</label>
+      <input type="text"  ng-model="fields.desc"  class="form-control"/> 
+    </div>
+    <div class="col-auto">
+    	 <button type="submit" class="btn btn-danger" value="">Invite</button>
+    </div>
+</div>
+    <input style="visibility:hidden"  ng-model="fields.roll" value="{{roll}}" />
+     
+</form>
+
+

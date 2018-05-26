@@ -2,15 +2,8 @@
 
 var AngularSpringApp = {};
 
-var config = {};
+var config = { };
 	firebase.initializeApp(config);
-
-	/*var rec = database.ref().child('RollProperty/1').once('value').then(function(snapshot) {
-		 // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-		  // ...
-		alert(' - '+ JSON.stringify(snapshot.val())) ;
-		});
-	*/
 
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
@@ -79,7 +72,10 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: RollListController
     });
     
-    
+    $routeProvider.when('/rollinvite/:id', {
+        templateUrl: 'rollinvite/invite',
+        controller: RollInviteController
+    });
     
     $routeProvider.otherwise({redirectTo: '/rolllist'});
 }]);
