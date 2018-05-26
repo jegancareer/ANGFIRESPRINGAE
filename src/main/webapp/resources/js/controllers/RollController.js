@@ -34,10 +34,16 @@ var RollController = function($scope, $http, $location, $routeParams, $firebaseO
     App.RollUpdate($scope);
     App.RollProperty($scope, $routeParams, $firebaseObject);
     //https://angularfirebase.com/lessons/managing-firebase-user-relationships-to-database-records/
-    $scope.optThisRoll = function(id) {
+    $scope.optThisRoll = function(id, name, sponsor) {
     	firebase.database().ref("RollPropertyJoiners/"+id+"/").push({
 			  userId:firebase.auth().currentUser.uid
     	});
+    	
+    	firebase.database().ref('RollJoinersProperties/'+firebase.auth().currentUser.uid+"/"+id+"/").push({
+			  "creator":"-",
+			  "sponsor" : sponsor,
+			  "name" : name
+		 });
     	$scope.disableOptIn=true;
     };
     

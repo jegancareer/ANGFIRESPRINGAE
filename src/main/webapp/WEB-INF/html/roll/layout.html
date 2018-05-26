@@ -1,6 +1,6 @@
 
 
-<h3 style="color:red;">Rolling: {{fireRollName}} ID({{roll}}) {{fireHtmlcont}}</h3>
+<h3 style="color:red;">Roll: {{fireRollName}} ID({{roll}}) {{fireHtmlcont}} {{fireSponsorName}}</h3>
  			 <div id="bpg">
 			    <div id="mainDiv">      
 			        <div id="svgDiv" style="font-size:15px;"></div>    
@@ -17,7 +17,7 @@
 	
 	<form><br/>
 		<div class="row">
-		<div class="col-sm-3"><button class="btn btn-danger" ng-disabled="disableOptIn" ng-click="optThisRoll(roll)">Join (F)</button></div>
+		<div class="col-sm-3"><button class="btn btn-danger" ng-disabled="disableOptIn" ng-click="optThisRoll(roll, fireRollName, fireSponsorName)">Join (F)</button></div>
 		<div class="col-sm-3"><button class="btn btn-danger" onclick="location.href='#/rollinvite/{{roll}}'">Invite M</button></div>
 		<div class="col-sm-3"><button class="btn btn-danger">Roll (I)</button> </div>
 		<div class="col-sm-3"><button class="btn btn-danger">Sponsor (I)</button></div>

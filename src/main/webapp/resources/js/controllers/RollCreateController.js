@@ -27,8 +27,8 @@ var RollCreateController = function($scope, $http, $location, $rootScope, $route
 			 reader.readAsDataURL(file);
 			 reader.onload = function (evt) {
 		            $scope.fileContent = reader.result;
-		            $scope.fileName = document.getElementById("file").files[0].name;
-		            $scope.fileSize = document.getElementById("file").files[0].size;;
+		            //$scope.fileName = document.getElementById("file").files[0].name;
+		            //$scope.fileSize = document.getElementById("file").files[0].size;;
 		        }
 			 reader.onerror = function (evt) {
 		            $scope.fileContent = "error";
@@ -51,6 +51,13 @@ var RollCreateController = function($scope, $http, $location, $rootScope, $route
 		 firebase.database().ref("RollPropertyJoiners/"+newRef.key+"/").push({
 	 			  userId:firebase.auth().currentUser.uid
 	 	 });
+		 
+		 firebase.database().ref('RollJoinersProperties/'+firebase.auth().currentUser.uid+"/"+newRef.key+"/").push({
+			  "creator":firebase.auth().currentUser.uid,
+			  "sponsor" : data.sponsor,
+			  "name" : data.name
+		 });
+		 
 		 
 		 firebase.storage().ref().child(newRef.key+"/nature1.jpg").put(file).then(function(snapshot) {
 			  console.log('Uploaded !');

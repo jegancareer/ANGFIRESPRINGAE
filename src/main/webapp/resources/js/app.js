@@ -2,7 +2,7 @@
 
 var AngularSpringApp = {};
 
-var config = { };
+var config = {};
 	firebase.initializeApp(config);
 
 	firebase.auth().onAuthStateChanged(function(user) {
@@ -80,6 +80,11 @@ App.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/myinvites', {
         templateUrl: 'myinvites/list',
         controller: MyInvitesController
+    });
+    
+    $routeProvider.when('/myrolls', {
+        templateUrl: 'myrolls/list',
+        controller: MyRollsController
     });
     
     $routeProvider.otherwise({redirectTo: '/rolllist'});
